@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.DistributionSummary;
+import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Tag;
 
@@ -29,8 +31,20 @@ public class MicrometerService {
 		.tags(tags)
 		.register(registry)
 		.increment();
+	
+		
+		DistributionSummary
+			.builder("pre_analise_executadas_hist")
+			.description("pre_analise_executadas_ist_total")
+			.tags(tags).maximumExpectedValue(1.0).minimumExpectedValue(1.0)
+			.distributionStatisticBufferLength(120)
+			.register(registry).record(1);;
 				
 
 	}
+	
+	public Integer obterQuantidadeFilmesComprados() {
+	       return 1;
+	    }
 
 }

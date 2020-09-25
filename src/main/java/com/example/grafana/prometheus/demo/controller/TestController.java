@@ -1,5 +1,6 @@
 package com.example.grafana.prometheus.demo.controller;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +24,8 @@ public class TestController {
 			@RequestParam("id_produto") String produto,
 			@RequestParam("id_proposta") String proposta,
 			@RequestParam("numero_loja") String loja,
-			@RequestParam("numero_operador") String operador
+			@RequestParam("numero_operador") String operador 
+			
 			) {
 		Map<String, String> mapa = new HashMap<>();
 		mapa.put("id_parceiro", parceiro);
@@ -32,6 +34,7 @@ public class TestController {
 		mapa.put("id_proposta", proposta);
 		mapa.put("numero_loja", loja);
 		mapa.put("numero_operador", operador);
+		mapa.put("data_proposta", LocalDateTime.now().toString());
 		
 		micrometerService.logMetrics(mapa);
 		
